@@ -1,0 +1,133 @@
+
+### GET Repository Info
+
+GET https://api.github.com/search/repositories?q=stars:>100+good-first-issues:>1+language:javascript&sort=stars&order=desc&per_page=100&page=1
+
+Accept: application/vnd.github+json
+Authorization: Bearer {{github_booby_api_key}}
+X-GitHub-Api-Version: 2022-11-28
+
+### 使うフィールド
+#id
+#html_url
+#full_name
+#avatar_url
+#description
+#stargazers_count
+#watchers_count
+#forks_count
+
+### Response Sample
+#{
+#  "total_count": 17541817,
+#  "incomplete_results": true,
+#  "items": [
+#    {
+#      "id": 18301405,
+#      "node_id": "MDEwOlJlcG9zaXRvcnkxODMwMTQwNQ==",
+#      "name": "SVGInjector",
+#      "full_name": "iconic/SVGInjector",
+#      "private": false,
+#      "owner": {
+#        "login": "iconic",
+#        "id": 3255139,
+#        "node_id": "MDEyOk9yZ2FuaXphdGlvbjMyNTUxMzk=",
+#        "avatar_url": "https://avatars.githubusercontent.com/u/3255139?v=4",
+#        "gravatar_id": "",
+#        "url": "https://api.github.com/users/iconic",
+#        "html_url": "https://github.com/iconic",
+#        "followers_url": "https://api.github.com/users/iconic/followers",
+#        "following_url": "https://api.github.com/users/iconic/following{/other_user}",
+#        "gists_url": "https://api.github.com/users/iconic/gists{/gist_id}",
+#        "starred_url": "https://api.github.com/users/iconic/starred{/owner}{/repo}",
+#        "subscriptions_url": "https://api.github.com/users/iconic/subscriptions",
+#        "organizations_url": "https://api.github.com/users/iconic/orgs",
+#        "repos_url": "https://api.github.com/users/iconic/repos",
+#        "events_url": "https://api.github.com/users/iconic/events{/privacy}",
+#        "received_events_url": "https://api.github.com/users/iconic/received_events",
+#        "type": "Organization",
+#        "site_admin": false
+#      },
+#      "html_url": "https://github.com/iconic/SVGInjector",
+#      "description": "Fast, caching, dynamic inline SVG DOM injection library",
+#      "fork": false,
+#      "url": "https://api.github.com/repos/iconic/SVGInjector",
+#      "forks_url": "https://api.github.com/repos/iconic/SVGInjector/forks",
+#      "keys_url": "https://api.github.com/repos/iconic/SVGInjector/keys{/key_id}",
+#      "collaborators_url": "https://api.github.com/repos/iconic/SVGInjector/collaborators{/collaborator}",
+#      "teams_url": "https://api.github.com/repos/iconic/SVGInjector/teams",
+#      "hooks_url": "https://api.github.com/repos/iconic/SVGInjector/hooks",
+#      "issue_events_url": "https://api.github.com/repos/iconic/SVGInjector/issues/events{/number}",
+#      "events_url": "https://api.github.com/repos/iconic/SVGInjector/events",
+#      "assignees_url": "https://api.github.com/repos/iconic/SVGInjector/assignees{/user}",
+#      "branches_url": "https://api.github.com/repos/iconic/SVGInjector/branches{/branch}",
+#      "tags_url": "https://api.github.com/repos/iconic/SVGInjector/tags",
+#      "blobs_url": "https://api.github.com/repos/iconic/SVGInjector/git/blobs{/sha}",
+#      "git_tags_url": "https://api.github.com/repos/iconic/SVGInjector/git/tags{/sha}",
+#      "git_refs_url": "https://api.github.com/repos/iconic/SVGInjector/git/refs{/sha}",
+#      "trees_url": "https://api.github.com/repos/iconic/SVGInjector/git/trees{/sha}",
+#      "statuses_url": "https://api.github.com/repos/iconic/SVGInjector/statuses/{sha}",
+#      "languages_url": "https://api.github.com/repos/iconic/SVGInjector/languages",
+#      "stargazers_url": "https://api.github.com/repos/iconic/SVGInjector/stargazers",
+#      "contributors_url": "https://api.github.com/repos/iconic/SVGInjector/contributors",
+#      "subscribers_url": "https://api.github.com/repos/iconic/SVGInjector/subscribers",
+#      "subscription_url": "https://api.github.com/repos/iconic/SVGInjector/subscription",
+#      "commits_url": "https://api.github.com/repos/iconic/SVGInjector/commits{/sha}",
+#      "git_commits_url": "https://api.github.com/repos/iconic/SVGInjector/git/commits{/sha}",
+#      "comments_url": "https://api.github.com/repos/iconic/SVGInjector/comments{/number}",
+#      "issue_comment_url": "https://api.github.com/repos/iconic/SVGInjector/issues/comments{/number}",
+#      "contents_url": "https://api.github.com/repos/iconic/SVGInjector/contents/{+path}",
+#      "compare_url": "https://api.github.com/repos/iconic/SVGInjector/compare/{base}...{head}",
+#      "merges_url": "https://api.github.com/repos/iconic/SVGInjector/merges",
+#      "archive_url": "https://api.github.com/repos/iconic/SVGInjector/{archive_format}{/ref}",
+#      "downloads_url": "https://api.github.com/repos/iconic/SVGInjector/downloads",
+#      "issues_url": "https://api.github.com/repos/iconic/SVGInjector/issues{/number}",
+#      "pulls_url": "https://api.github.com/repos/iconic/SVGInjector/pulls{/number}",
+#      "milestones_url": "https://api.github.com/repos/iconic/SVGInjector/milestones{/number}",
+#      "notifications_url": "https://api.github.com/repos/iconic/SVGInjector/notifications{?since,all,participating}",
+#      "labels_url": "https://api.github.com/repos/iconic/SVGInjector/labels{/name}",
+#      "releases_url": "https://api.github.com/repos/iconic/SVGInjector/releases{/id}",
+#      "deployments_url": "https://api.github.com/repos/iconic/SVGInjector/deployments",
+#      "created_at": "2014-03-31T17:18:21Z",
+#      "updated_at": "2023-02-27T13:27:41Z",
+#      "pushed_at": "2022-10-22T15:31:53Z",
+#      "git_url": "git://github.com/iconic/SVGInjector.git",
+#      "ssh_url": "git@github.com:iconic/SVGInjector.git",
+#      "clone_url": "https://github.com/iconic/SVGInjector.git",
+#      "svn_url": "https://github.com/iconic/SVGInjector",
+#      "homepage": "",
+#      "size": 819,
+#      "stargazers_count": 984,
+#      "watchers_count": 984,
+#      "language": "JavaScript",
+#      "has_issues": true,
+#      "has_projects": true,
+#      "has_downloads": true,
+#      "has_wiki": true,
+#      "has_pages": false,
+#      "has_discussions": false,
+#      "forks_count": 156,
+#      "mirror_url": null,
+#      "archived": false,
+#      "disabled": false,
+#      "open_issues_count": 30,
+#      "license": {
+#        "key": "mit",
+#        "name": "MIT License",
+#        "spdx_id": "MIT",
+#        "url": "https://api.github.com/licenses/mit",
+#        "node_id": "MDc6TGljZW5zZTEz"
+#      },
+#      "allow_forking": true,
+#      "is_template": false,
+#      "web_commit_signoff_required": false,
+#      "topics": [],
+#      "visibility": "public",
+#      "forks": 156,
+#      "open_issues": 30,
+#      "watchers": 984,
+#      "default_branch": "master",
+#      "score": 1.0
+#    }
+#    ]
+#}
