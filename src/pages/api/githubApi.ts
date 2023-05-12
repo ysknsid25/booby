@@ -29,17 +29,20 @@ export const getRepositories = async (searchCondition: GitHubRepositorySearch): 
     const endPoint = baseUrl + repositorySearch + query;
     const response = await fetch(endPoint);
     const data: any = await response.json();
-    const repositories: GitHubRepository[] = data.items.map((item: any) => {
-        return {
-            id: item.id,
-            htmlUrl: item.html_url,
-            repositoryName: item.name,
-            avatorUrl: item.owner.avatar_url,
-            description: item.description,
-            stargazersCount: item.stargazers_count,
-            watchersCount: item.watchers_count,
-            forksCount: item.forks_count
-        }
-    });
-    return repositories;
+    if(data.items){
+        const repositories: GitHubRepository[] = data.items.map((item: any) => {
+            return {
+                id: item.id,
+                htmlUrl: item.html_url,
+                repositoryName: item.name,
+                avatorUrl: item.owner.avatar_url,
+                description: item.description,
+                stargazersCount: item.stargazers_count,
+                watchersCount: item.watchers_count,
+                forksCount: item.forks_count
+            }
+        });
+        return repositories;
+    }
+    return [];
 }
