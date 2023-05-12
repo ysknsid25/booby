@@ -15,7 +15,7 @@ npm run dev
 
 [http://localhost:3000](http://localhost:3000) プロジェクトが確認できれば OK です。
 
-## REST Client
+# REST Client
 
 VSCode の拡張機能に REST Client が入っている場合、`test.http`にて API テストが可能です。
 
