@@ -2,8 +2,8 @@ import HeadComp from '@/Components/head'
 import Header from '@/Components/header'
 import RepositoryCard from '@/Components/repositoryCard'
 import { GitHubRepository, getRepositories } from "./api/githubApi"
-import { useState } from "react"
-import Select from "@/Components/select"
+import { languageOprionts, sortOptions } from "@/Components/repositorySearchForm"
+import RepositorySearchForm from "@/Components/repositorySearchForm"
 
 type Props = {
   repositories: GitHubRepository[]
@@ -11,62 +11,17 @@ type Props = {
   sort: string
 }
 
-const languageOprionts = [
-  { label: "JavaScript", value: "javascript" },
-  { label: "TypeScript", value: "typescript" },
-  { label: "Python", value: "python" },
-  { label: "Go", value: "go" },
-  { label: "Java", value: "java" },
-  { label: "Kotlin", value: "kotlin" },
-  { label: "Rust", value: "rust" },
-  { label: "Ruby", value: "ruby" },
-  { label: "PHP", value: "php" },
-  { label: "Perl", value: "perl" },
-  { label: "Swift", value: "swift" },
-  { label: "C", value: "c" },
-  { label: "C#", value: "c#" },
-  { label: "C++", value: "c++" },
-  { label: "Vue", value: "Vue" },
-]
-
-const sortOptions = [
-  { label: "Stars", value: "stars" },
-  { label: "Forks", value: "forks" },
-]
-
 export default function Home({ repositories, language, sort }: Props) {
-  const [languageVal, setLanguageVal] = useState(language)
-  const [sortVal, setSortVal] = useState(sort)
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setLanguageVal(event.target.value)
-  }
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortVal(event.target.value)
-  }
   return (
     <>
       <HeadComp />
       <Header />
       <main>
         <div className="flex justify-center">
-          <form method="get" action="/">
-            <div className="mt-4 flex flex-row">
-              <div className="mr-4">
-                <Select name="language" defaultVal={languageVal} options={languageOprionts} onChangeHandle={handleLanguageChange} />
-              </div>
-              <div className="mr-4">
-                <Select name="sort" defaultVal={sortVal} options={sortOptions} onChangeHandle={handleSortChange} />
-              </div>
-              <div>
-                <button type="submit" className="border border-black text-black font-bold py-2 px-4 rounded-full">
-                  <i className="ri-search-line"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+          <RepositorySearchForm language={language} sort={sort} />
         </div>
         <div className="p-4 justify-center">
-          {repositories.length > 0 ? repositories.map((repository) => <RepositoryCard key={repository.id} repository={repository} />) : <h1>no data</h1>}
+          {repositories.length > 0 ? repositories.map((repository) => <RepositoryCard key={repository.id} repository={repository} />) : <h1>NO Data or API Error. Please wait </h1>}
         </div>
       </main>
     </>
