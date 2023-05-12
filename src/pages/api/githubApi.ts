@@ -25,7 +25,7 @@ headers.set('X-GitHub-Api-Version', '2022-11-28');
 
 // GitHubのリポジトリを取得する
 export const getRepositories = async (searchCondition: GitHubRepositorySearch): Promise<GitHubRepository[]> => {
-    const query = `stars:>100+good-first-issues:>1+language:${searchCondition.language}&sort=${searchCondition.sort}&order=desc&per_page=100&page=1`;
+    const query = `stars:>100+good-first-issues:>1+language:${searchCondition.language}&sort=${searchCondition.sort}&order=desc&per_page=50&page=1`;
     const endPoint = baseUrl + repositorySearch + query;
     const response = await fetch(endPoint);
     const data: any = await response.json();
@@ -33,7 +33,7 @@ export const getRepositories = async (searchCondition: GitHubRepositorySearch): 
         return {
             id: item.id,
             htmlUrl: item.html_url,
-            repositoryName: item.full_name,
+            repositoryName: item.name,
             avatorUrl: item.owner.avatar_url,
             description: item.description,
             stargazersCount: item.stargazers_count,
