@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Select from "@/Components/select"
 
 export const languageOprionts = [
@@ -30,22 +29,14 @@ type Props = {
 }
 
 export default function RepositorySearchForm({ language, sort }: Props) {
-    const [languageVal, setLanguageVal] = useState(language)
-    const [sortVal, setSortVal] = useState(sort)
-    const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setLanguageVal(event.target.value)
-    }
-    const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSortVal(event.target.value)
-    }
     return (
         <form method="get" action="/">
             <div className="mt-4 flex flex-row">
                 <div className="mr-4">
-                    <Select name="language" defaultVal={languageVal} options={languageOprionts} onChangeHandle={handleLanguageChange} />
+                    <Select name="language" defaultVal={language} options={languageOprionts} />
                 </div>
                 <div className="mr-4">
-                    <Select name="sort" defaultVal={sortVal} options={sortOptions} onChangeHandle={handleSortChange} />
+                    <Select name="sort" defaultVal={sort} options={sortOptions} />
                 </div>
                 <div>
                     <button type="submit" className="border border-black text-black font-bold py-2 px-4 rounded-full">
