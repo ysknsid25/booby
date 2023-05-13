@@ -1,9 +1,8 @@
+import { GitHubRepository, getRepositories } from "./api/githubApi"
 import HeadComp from '@/Components/head'
 import Header from '@/Components/header'
 import RepositoryCard from '@/Components/repositoryCard'
-import { GitHubRepository, getRepositories } from "./api/githubApi"
-import { languageOprionts, sortOptions } from "@/Components/repositorySearchForm"
-import RepositorySearchForm from "@/Components/repositorySearchForm"
+import RepositorySearchForm, { languageOprionts, sortOptions } from "@/Components/repositorySearchForm"
 
 type Props = {
   repositories: GitHubRepository[]

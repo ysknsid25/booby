@@ -1,5 +1,5 @@
-import { GitHubRepository } from "../pages/api/githubApi"
 import Image from 'next/image';
+import { GitHubRepository } from "../pages/api/githubApi"
 
 type Props = {
     repository: GitHubRepository

@@ -10,7 +10,7 @@ on:
             - master
 
 jobs:
-    test:
+    main-workflows:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
@@ -21,7 +21,7 @@ jobs:
                   node-version: "18"
             - name: Install dependencies
               run: npm install
-            - name: Run ECLint
+            - name: Run ESLint
               run: npm run lint
             - name: Run tests
               run: npm run test:all
