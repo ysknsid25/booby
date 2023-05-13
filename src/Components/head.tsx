@@ -4,8 +4,8 @@ export default function HeadComp() {
   const title = 'booby'
   const description = 'コントリビュートしやすいOSSプロジェクトを探すためのツールです。'
   const type = 'website'
-  const url = ''
-  const imageUrl = ''
+  const url = 'https://booby-pi.vercel.app/'
+  const imageUrl = '/app.png'
   return (
     <Head>
       <title>{title}</title>
