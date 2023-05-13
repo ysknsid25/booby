@@ -1,25 +1,27 @@
-import { render, fireEvent } from '@testing-library/react';
-import Select from '@/Components/select';
-import '@testing-library/jest-dom';
+import { render, fireEvent } from '@testing-library/react'
+import Select from '@/Components/select'
+import '@testing-library/jest-dom'
 
 const options = [
-    { label: "A", value: "a" },
-    { label: "B", value: "b" },
+  { label: 'A', value: 'a' },
+  { label: 'B', value: 'b' },
 ]
 
 describe('SelectBoxのテスト', () => {
-    test('SelectBoxにname属性が設定されているかどうか', () => {
-        const { getByRole } = render(<Select name="optionstest" defaultVal={options[0].value} options={options}/>);
-        const selectElement = getByRole('combobox');
-        expect(selectElement).toHaveAttribute('name', 'optionstest');
-    });
-    test('defaultValueが正しく設定されていることを確認する', () => {
-        const defaultVal = 'a';
-        const { getByRole } = render(
-            <Select name="optionstest" options={options} defaultVal={options[0].value} />
-        );
-        const selectElement = getByRole('combobox');
-        const selectedOptionValue = selectElement.selectedOptions[0].value;
-        expect(selectedOptionValue).toBe(defaultVal);
-    });
-});
+  test('SelectBoxにname属性が設定されているかどうか', () => {
+    const { getByRole } = render(
+      <Select name='optionstest' defaultVal={options[0].value} options={options} />,
+    )
+    const selectElement = getByRole('combobox')
+    expect(selectElement).toHaveAttribute('name', 'optionstest')
+  })
+  test('defaultValueが正しく設定されていることを確認する', () => {
+    const defaultVal = 'a'
+    const { getByRole } = render(
+      <Select name='optionstest' options={options} defaultVal={options[0].value} />,
+    )
+    const selectElement = getByRole('combobox')
+    const selectedOptionValue = selectElement.selectedOptions[0].value
+    expect(selectedOptionValue).toBe(defaultVal)
+  })
+})
