@@ -17,7 +17,7 @@ export default function Header() {
             name='sponsorbutton'
             className='border border-pink-500 text-pink-500 font-bold py-2 px-4 rounded-full'
           >
-            <a href='https://github.com/ysknsid25/booby' target='_blank'>
+            <a href='https://github.com/sponsors/ysknsid25' target='_blank'>
               <i className='ri-heart-fill ri-lg'></i>
             </a>
           </button>
