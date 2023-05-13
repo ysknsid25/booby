@@ -20,6 +20,6 @@ describe('RepositSearchFormのテスト', () => {
   test('RepositSearchFormに検索ボタンが設定されているかどうか', () => {
     const { getByRole } = render(<RepositorySearchForm language='php' sort='stars' />)
     const buttonElements = getByRole('button')
-    expect(buttonElements).toHaveAttribute('name', 'searchbutton')
+    expect(buttonElements).toHaveAttribute('id', 'searchbutton')
   })
 })

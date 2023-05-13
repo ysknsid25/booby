@@ -41,7 +41,7 @@ export default function RepositorySearchForm({ language, sort }: Props) {
         <div>
           <button
             type='submit'
-            name='searchbutton'
+            id='searchbutton'
             className='border border-black text-black font-bold py-2 px-4 rounded-full'
           >
             <i className='ri-search-line'></i>
