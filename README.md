@@ -15,7 +15,7 @@ npm run dev
 
 [http://localhost:3000](http://localhost:3000) プロジェクトが確認できれば OK です。
 
-## REST Client
+# REST Client
 
 VSCode の拡張機能に REST Client が入っている場合、`test.http`にて API テストが可能です。
 
@@ -29,3 +29,13 @@ VSCode の拡張機能に REST Client が入っている場合、`test.http`に�
 ```
 
 これで`test.http`から API のテストを行うことが可能です。
+
+# icon
+
+[Remix Icon](https://remixicon.com/)を利用しています。
+
+Icon を追加する場合こちらからお願いします。
+
+# Jest/Testinglibrary
+
+[こちら](https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library)を参考に。
