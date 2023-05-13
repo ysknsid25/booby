@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Workflows
 
 on:
     push:
@@ -21,5 +21,7 @@ jobs:
                   node-version: "18"
             - name: Install dependencies
               run: npm install
+            - name: Run ECLint
+              run: npm run lint
             - name: Run tests
               run: npm run test:all
