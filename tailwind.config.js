@@ -3,7 +3,7 @@ module.exports = {
   mode: 'jit',
   darkMode: false, // 'media' or 'class',
   purge: {
-    content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
+    content: ['./src/pages/*.{js,ts,jsx,tsx}', './src/Components/*.{js,ts,jsx,tsx}'],
     options: {
       // https://purgecss.com/safelisting.html#patterns
       safelist: {
@@ -11,7 +11,6 @@ module.exports = {
       },
     },
   },
-  content: [],
   theme: {
     extend: {},
   },
