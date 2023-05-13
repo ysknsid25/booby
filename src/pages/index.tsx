@@ -19,7 +19,7 @@ export default function Home({ repositories, language, sort }: Props) {
       <HeadComp />
       <Header />
       <main>
-        <div className='flex justify-center'>
+        <div className='flex justify-end mr-8'>
           <RepositorySearchForm language={language} sort={sort} />
         </div>
         <div className='p-4 justify-center'>
