@@ -35,3 +35,7 @@ VSCode の拡張機能に REST Client が入っている場合、`test.http`に�
 [Remix Icon](https://remixicon.com/)を利用しています。
 
 Icon を追加する場合こちらからお願いします。
+
+# Jest/Testinglibrary
+
+[こちら](https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library)を参考に。

@@ -9,7 +9,7 @@ export default function Header() {
                     <span className="ml-3 text-2xl">booby</span>
                 </a>
                 <div className="ml-auto mr-2 flex items-center justify-end">
-                    <button className="border border-pink-500 text-pink-500 font-bold py-2 px-4 rounded-full">
+                    <button name="sponsorbutton" className="border border-pink-500 text-pink-500 font-bold py-2 px-4 rounded-full">
                         <a href="https://github.com/ysknsid25/booby" target="_blank">
                             <i className="ri-heart-fill ri-lg"></i>
                         </a>

@@ -6,7 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "test": "jest --watch"
     },
     "dependencies": {
         "@next/font": "13.4.2",
@@ -23,7 +24,11 @@
         "typescript": "5.0.4"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^14.0.0",
         "autoprefixer": "^10.4.14",
+        "jest": "^29.5.0",
+        "jest-environment-jsdom": "^29.5.0",
         "postcss": "^8.4.23",
         "tailwindcss": "^3.3.2"
     }

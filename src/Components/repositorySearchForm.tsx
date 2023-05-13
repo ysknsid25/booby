@@ -39,7 +39,7 @@ export default function RepositorySearchForm({ language, sort }: Props) {
                     <Select name="sort" defaultVal={sort} options={sortOptions} />
                 </div>
                 <div>
-                    <button type="submit" className="border border-black text-black font-bold py-2 px-4 rounded-full">
+                    <button type="submit" name="searchbutton" className="border border-black text-black font-bold py-2 px-4 rounded-full">
                         <i className="ri-search-line"></i>
                     </button>
                 </div>
