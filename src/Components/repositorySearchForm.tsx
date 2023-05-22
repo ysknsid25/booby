@@ -18,7 +18,12 @@ export const languageOprionts = [
   { label: 'Vue', value: 'Vue' },
 ]
 
-export const sortOptions = [
+export type SortOption = {
+  label: string
+  value: 'stars' | 'forks' | 'help-wanted-issues' | 'updated'
+}
+
+export const sortOptions: SortOption[] = [
   { label: 'Stars', value: 'stars' },
   { label: 'Forks', value: 'forks' },
 ]
