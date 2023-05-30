@@ -7,7 +7,7 @@ type Props = {
 
 export default function RepositoryCard({ repository }: Props) {
   return (
-    <div className='p-4 w-full lg:w-3/4 xl:w-3/5'>
+    <div className='p-4'>
       <div className='h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden'>
         <div className='p-4'>
           <div className='flex mb-4 md:flex-row lg:text-7xl font-bold text-slate-500'>
