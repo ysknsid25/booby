@@ -1,11 +1,13 @@
+import { GetServerSideProps } from 'next'
+import RepositorySearchForm, {
+  SortOption,
+  languageOprionts,
+  sortOptions,
+} from '../Components/repositorySearchForm'
 import { GitHubRepository, getRepositories } from './api/githubApi'
 import HeadComp from '@/Components/head'
 import Header from '@/Components/header'
 import RepositoryCard from '@/Components/repositoryCard'
-import RepositorySearchForm, {
-  languageOprionts,
-  sortOptions,
-} from '@/Components/repositorySearchForm'
 
 type Props = {
   repositories: GitHubRepository[]
@@ -22,7 +24,7 @@ export default function Home({ repositories, language, sort }: Props) {
         <div className='flex justify-end mr-8'>
           <RepositorySearchForm language={language} sort={sort} />
         </div>
-        <div className='p-4 justify-center'>
+        <div className='flex flex-wrap p-4 justify-center'>
           {repositories.length > 0 ? (
             repositories.map((repository) => (
               <RepositoryCard key={repository.id} repository={repository} />
@@ -36,23 +38,23 @@ export default function Home({ repositories, language, sort }: Props) {
   )
 }
 
-export async function getServerSideProps(context: any) {
-  const searchCondition = {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const searchCondition: { language: string; sort: SortOption['value'] } = {
     language: 'javascript',
     sort: 'stars',
   }
   let language = 'javascript'
-  let sort = 'stars'
+  let sort: SortOption['value'] = 'stars'
   if (Object.keys(context.query).length > 0) {
-    if (context.query.language !== '') {
+    if (context.query.language !== '' && typeof context.query.language == 'string') {
       searchCondition.language = context.query.language
       language =
         languageOprionts.find((option) => option.value === context.query.language)?.value ??
         'javascript'
     }
-    if (context.query.sort !== '') {
-      searchCondition.sort = context.query.sort
+    if (context.query.sort !== '' && typeof context.query.sort == 'string') {
       sort = sortOptions.find((option) => option.value === context.query.sort)?.value ?? 'stars'
+      searchCondition.sort = sort
     }
   }
   const repositories = await getRepositories(searchCondition)
