@@ -2,7 +2,8 @@ import { Octokit } from 'octokit'
 
 export type GitHubRepositorySearch = {
   language: string
-  sort?: 'stars' | 'forks' | 'help-wanted-issues' | 'updated'
+  sort: 'stars' | 'forks' | 'help-wanted-issues' | 'updated'
+  page: number
 }
 
 export type GitHubRepository = {
@@ -28,7 +29,7 @@ export const getRepositories = async (
     sort: searchCondition.sort,
     order: 'desc',
     per_page: 50,
-    page: 1,
+    page: searchCondition.page,
   })
   if (response.data.items) {
     const repositories: GitHubRepository[] = response.data.items.map((item) => {

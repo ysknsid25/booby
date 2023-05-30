@@ -4,7 +4,7 @@ import RepositorySearchForm, {
   languageOprionts,
   sortOptions,
 } from '../Components/repositorySearchForm'
-import { GitHubRepository, getRepositories } from './api/githubApi'
+import { GitHubRepository, getRepositories, GitHubRepositorySearch } from './api/githubApi'
 import HeadComp from '@/Components/head'
 import Header from '@/Components/header'
 import RepositoryCard from '@/Components/repositoryCard'
@@ -13,9 +13,10 @@ type Props = {
   repositories: GitHubRepository[]
   language: string
   sort: string
+  page: number
 }
 
-export default function Home({ repositories, language, sort }: Props) {
+export default function Home({ repositories, language, sort, page }: Props) {
   return (
     <>
       <HeadComp />
@@ -39,22 +40,34 @@ export default function Home({ repositories, language, sort }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const searchCondition: { language: string; sort: SortOption['value'] } = {
+  const searchCondition: GitHubRepositorySearch = {
     language: 'javascript',
     sort: 'stars',
+    page: 1,
   }
   let language = 'javascript'
   let sort: SortOption['value'] = 'stars'
+  let page = 1
   if (Object.keys(context.query).length > 0) {
+    // language
     if (context.query.language !== '' && typeof context.query.language == 'string') {
       searchCondition.language = context.query.language
       language =
         languageOprionts.find((option) => option.value === context.query.language)?.value ??
         'javascript'
     }
+    // sort
     if (context.query.sort !== '' && typeof context.query.sort == 'string') {
       sort = sortOptions.find((option) => option.value === context.query.sort)?.value ?? 'stars'
       searchCondition.sort = sort
+    }
+    // page
+    if (context.query.page !== '' && typeof context.query.page == 'string') {
+      page = Number(context.query.page)
+      if (isNaN(page)) {
+        page = 1
+      }
+      searchCondition.page = page
     }
   }
   const repositories = await getRepositories(searchCondition)
@@ -63,6 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       repositories,
       language,
       sort,
+      page,
     },
   }
 }
