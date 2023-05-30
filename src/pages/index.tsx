@@ -22,7 +22,7 @@ export default function Home({ repositories, language, sort }: Props) {
         <div className='flex justify-end mr-8'>
           <RepositorySearchForm language={language} sort={sort} />
         </div>
-        <div className='p-4 justify-center'>
+        <div className='flex flex-wrap p-4 justify-center'>
           {repositories.length > 0 ? (
             repositories.map((repository) => (
               <RepositoryCard key={repository.id} repository={repository} />
