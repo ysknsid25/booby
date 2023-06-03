@@ -23,7 +23,10 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 // GitHubのリポジトリを取得する
 export const getRepositories = async (
   searchCondition: GitHubRepositorySearch,
-): Promise<GitHubRepository[]> => {
+): Promise<{
+  totalCount: number
+  repositories: GitHubRepository[]
+}> => {
   const response = await octokit.rest.search.repos({
     q: `stars:>100+good-first-issues:>1+language:${searchCondition.language}`,
     sort: searchCondition.sort,
@@ -44,7 +47,7 @@ export const getRepositories = async (
         forksCount: item.forks_count,
       }
     })
-    return repositories
+    return { totalCount: response.data.total_count, repositories }
   }
-  return []
+  return { totalCount: 0, repositories: [] }
 }

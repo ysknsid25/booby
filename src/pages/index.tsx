@@ -7,6 +7,7 @@ import RepositorySearchForm, {
 import { GitHubRepository, getRepositories, GitHubRepositorySearch } from './api/githubApi'
 import HeadComp from '@/Components/head'
 import Header from '@/Components/header'
+import Pagination from '@/Components/pagination'
 import RepositoryCard from '@/Components/repositoryCard'
 
 type Props = {
@@ -14,9 +15,10 @@ type Props = {
   language: string
   sort: string
   page: number
+  totalCount: number
 }
 
-export default function Home({ repositories, language, sort, page }: Props) {
+export default function Home({ repositories, language, sort, page, totalCount }: Props) {
   return (
     <>
       <HeadComp />
@@ -34,6 +36,7 @@ export default function Home({ repositories, language, sort, page }: Props) {
             <h1>NO Data or API Error. Please wait </h1>
           )}
         </div>
+        <Pagination currentPage={page} totalCount={totalCount} perPage={50} />
       </main>
     </>
   )
@@ -70,10 +73,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       searchCondition.page = page
     }
   }
-  const repositories = await getRepositories(searchCondition)
+  const { repositories, totalCount } = await getRepositories(searchCondition)
   return {
     props: {
       repositories,
+      totalCount,
       language,
       sort,
       page,
