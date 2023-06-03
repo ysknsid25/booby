@@ -29,7 +29,7 @@ export default function Pagination({ currentPage, totalCount, perPage }: Props) 
             return (
               <span
                 key={pageNumber}
-                className='w-10 h-10 rounded-full inline-flex items-center justify-center ring-1 ring-inset ring-gray-300'
+                className='w-10 h-10 rounded-full inline-flex items-center text-lg justify-center'
               >
                 ...
               </span>
