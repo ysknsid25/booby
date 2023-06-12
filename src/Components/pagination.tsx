@@ -35,9 +35,10 @@ function getPageNumbers(currentPage: number, totalPage: number): Array<string | 
 export default function Pagination({ currentPage, totalCount, perPage }: Props) {
   const router = useRouter()
   let totalPage = Math.ceil(totalCount / perPage)
-  // 1000件以上はAPI制限でエラーになるため、1000件までの遷移先しか表示しない
-  if (totalCount > 1000) {
-    totalPage = Math.floor(1000 / perPage)
+  // 1000件を超える場合はAPI制限でエラーになるため、1000件までの遷移先しか表示しない
+  const apiMaxCount = 1000
+  if (totalCount > apiMaxCount) {
+    totalPage = Math.floor(apiMaxCount / perPage)
   }
   let pageNumbers: Array<string | number> = getPageNumbers(currentPage, totalPage)
   return (
