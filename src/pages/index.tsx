@@ -16,9 +16,10 @@ type Props = {
   sort: string
   page: number
   totalCount: number
+  perPage: number
 }
 
-export default function Home({ repositories, language, sort, page, totalCount }: Props) {
+export default function Home({ repositories, language, sort, page, totalCount, perPage }: Props) {
   return (
     <>
       <HeadComp />
@@ -36,7 +37,7 @@ export default function Home({ repositories, language, sort, page, totalCount }:
             <h1>NO Data or API Error. Please wait </h1>
           )}
         </div>
-        <Pagination currentPage={page} totalCount={totalCount} perPage={50} />
+        <Pagination currentPage={page} totalCount={totalCount} perPage={perPage} />
       </main>
     </>
   )
@@ -47,10 +48,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     language: 'javascript',
     sort: 'stars',
     page: 1,
+    perPage: 50
   }
   let language = 'javascript'
   let sort: SortOption['value'] = 'stars'
   let page = 1
+  let perPage = 50
   if (Object.keys(context.query).length > 0) {
     if (context.query.language !== '' && typeof context.query.language == 'string') {
       searchCondition.language = context.query.language
@@ -69,6 +72,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
       searchCondition.page = page
     }
+    if(context.query.per_page !== '' && typeof context.query.per_page == 'string') {
+      perPage = Number(context.query.per_page)
+      if (isNaN(perPage)) {
+        perPage = 50
+      }
+      searchCondition.perPage = perPage
+    }
   }
   const { repositories, totalCount } = await getRepositories(searchCondition)
   return {
@@ -78,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       language,
       sort,
       page,
+      perPage
     },
   }
 }

@@ -4,6 +4,7 @@ export type GitHubRepositorySearch = {
   language: string
   sort: 'stars' | 'forks' | 'help-wanted-issues' | 'updated'
   page: number
+  perPage: number
 }
 
 export type GitHubRepository = {
@@ -31,7 +32,7 @@ export const getRepositories = async (
     q: `stars:>100+good-first-issues:>1+language:${searchCondition.language}`,
     sort: searchCondition.sort,
     order: 'desc',
-    per_page: 50,
+    per_page: searchCondition.perPage,
     page: searchCondition.page,
   })
   if (response.data.items) {
