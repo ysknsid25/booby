@@ -52,19 +52,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let sort: SortOption['value'] = 'stars'
   let page = 1
   if (Object.keys(context.query).length > 0) {
-    // language
     if (context.query.language !== '' && typeof context.query.language == 'string') {
       searchCondition.language = context.query.language
       language =
         languageOprionts.find((option) => option.value === context.query.language)?.value ??
         'javascript'
     }
-    // sort
     if (context.query.sort !== '' && typeof context.query.sort == 'string') {
       sort = sortOptions.find((option) => option.value === context.query.sort)?.value ?? 'stars'
       searchCondition.sort = sort
     }
-    // page
     if (context.query.page !== '' && typeof context.query.page == 'string') {
       page = Number(context.query.page)
       if (isNaN(page)) {
