@@ -7,6 +7,13 @@ type Props = {
   perPage: number
 }
 
+/**
+ * ページ番号を表示するための配列を返す関数です。
+ *
+ * @param {number} currentPage - 現在のアクティブなページ番号です。
+ * @param {number} totalPage - 総ページ数です。
+ * @returns {Array<string | number>} - 表示するページ番号の配列です。
+ */
 function getPageNumbers(currentPage: number, totalPage: number): Array<string | number> {
   // 6ページ以下の場合は全て表示する
   if (totalPage <= 6) {
