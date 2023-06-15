@@ -37,6 +37,48 @@ describe('Paginationのテスト', () => {
     )
     expect(getAllByRole('link')).toHaveLength(5)
   })
+  test('Paginationのページ数が7以上の場合かつ現在ページが4のときに左右に「...」が表示されているかどうか', () => {
+    const totalCount = 301
+    const perPage = 50
+    const totalPage = Math.ceil(totalCount / perPage) // 7
+    const { getByRole } = render(
+      <Pagination currentPage={4} totalCount={totalCount} perPage={perPage} />,
+    )
+    const pagination = getByRole('navigation')
+    const children = pagination.children
+    expect(children[0].textContent).toBe('...')
+    expect(children[children.length - 1].textContent).toBe('...')
+  })
+  test('Paginationのページ数が7以上の場合かつ現在ページが4のときにlinkの数が5つ表示されているかどうか', () => {
+    const totalCount = 301
+    const perPage = 50
+    const totalPage = Math.ceil(totalCount / perPage) // 7
+    const { getAllByRole } = render(
+      <Pagination currentPage={4} totalCount={totalCount} perPage={perPage} />,
+    )
+    expect(getAllByRole('link')).toHaveLength(5)
+  })
+  test('Paginationのページ数が7以上の場合かつ現在ページが最終ページの2ページ前のときに左に「...」が表示されているかどうか', () => {
+    const totalCount = 301
+    const perPage = 50
+    const totalPage = Math.ceil(totalCount / perPage) // 7
+    const { getByRole } = render(
+      <Pagination currentPage={totalPage - 2} totalCount={totalCount} perPage={perPage} />,
+    )
+    const pagination = getByRole('navigation')
+    const children = pagination.children
+    expect(children[0].textContent).toBe('...')
+    expect(children[children.length - 1].textContent).not.toBe('...')
+  })
+  test('Paginationのページ数が7以上の場合かつ現在ページが最終ページの2ページ前のときにlinkの数が5つ表示されているかどうか', () => {
+    const totalCount = 301
+    const perPage = 50
+    const totalPage = Math.ceil(totalCount / perPage) // 7
+    const { getAllByRole } = render(
+      <Pagination currentPage={totalPage - 2} totalCount={totalCount} perPage={perPage} />,
+    )
+    expect(getAllByRole('link')).toHaveLength(5)
+  })
   test('PaginationのtotalCountが1000を超える場合は1000を超えるアイテムが表示されるページへの遷移をしないようにする', () => {
     const totalCount = 2000
     const perPage = 50
