@@ -20,7 +20,7 @@ function getPageNumbers(currentPage: number, totalPage: number): Array<string | 
     return Array.from({ length: totalPage }, (_, index) => index + 1)
   }
 
-  const pagesArray = []
+  const pagesArray: Array<string | number> = []
   const startPage = Math.max(currentPage - 2, 1)
   const endPage = Math.min(currentPage + 2, totalPage)
 
