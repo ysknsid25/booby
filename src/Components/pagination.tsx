@@ -1,3 +1,4 @@
+import { start } from 'repl'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -20,23 +21,24 @@ function getPageNumbers(currentPage: number, totalPage: number): Array<string | 
     return Array.from({ length: totalPage }, (_, index) => index + 1)
   }
 
-  if (currentPage <= 3) {
-    return [1, 2, 3, 4, 5, '...']
+  const pagesArray = []
+  const startPage = Math.max(currentPage - 2, 1)
+  const endPage = Math.min(currentPage + 2, totalPage)
+
+  for (let i = startPage; i <= endPage; i++) {
+    pagesArray.push(i)
   }
 
-  if (currentPage >= totalPage - 2) {
-    return ['...', totalPage - 4, totalPage - 3, totalPage - 2, totalPage - 1, totalPage]
+  if (endPage <= totalPage - 1) {
+    if (endPage <= totalPage - 2) pagesArray.push('...')
+    pagesArray.push(totalPage)
+  }
+  if (startPage >= 2) {
+    if (startPage >= 3) pagesArray.unshift('...')
+    pagesArray.unshift(1)
   }
 
-  return [
-    '...',
-    currentPage - 2,
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    currentPage + 2,
-    '...',
-  ]
+  return pagesArray
 }
 
 export default function Pagination({ currentPage, totalCount, perPage }: Props) {
@@ -61,22 +63,15 @@ export default function Pagination({ currentPage, totalCount, perPage }: Props) 
               </span>
             )
           }
-          if (pageNumber === currentPage) {
-            return (
-              <Link
-                key={i}
-                href={{ pathname: router.pathname, query: { ...router.query, page: pageNumber } }}
-                className='w-10 h-10 rounded-full inline-flex items-center justify-center bg-indigo-600 text-sm font-semibold text-white'
-              >
-                {pageNumber}
-              </Link>
-            )
-          }
           return (
             <Link
               key={i}
               href={{ pathname: router.pathname, query: { ...router.query, page: pageNumber } }}
-              className='w-10 h-10 rounded-full inline-flex items-center justify-center ring-1 ring-inset ring-gray-300 text-sm'
+              className={`w-10 h-10 rounded-full inline-flex items-center justify-center text-sm ${
+                pageNumber === currentPage
+                  ? 'bg-indigo-600 font-semibold text-white'
+                  : 'ring-1 ring-inset ring-gray-300'
+              }`}
             >
               {pageNumber}
             </Link>
