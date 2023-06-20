@@ -15,28 +15,26 @@ type Props = {
  * @returns {Array<string | number>} - 表示するページ番号の配列です。
  */
 function getPageNumbers(currentPage: number, totalPage: number): Array<string | number> {
-  // 6ページ以下の場合は全て表示する
-  if (totalPage <= 6) {
-    return Array.from({ length: totalPage }, (_, index) => index + 1)
+  const pagesArray: Array<string | number> = []
+
+  const startPage =
+    currentPage >= totalPage - 1 ? Math.max(totalPage - 4, 1) : Math.max(currentPage - 2, 1)
+  const endPage = currentPage <= 2 ? Math.min(5, totalPage) : Math.min(currentPage + 2, totalPage)
+
+  for (let i = startPage; i <= endPage; i++) {
+    pagesArray.push(i)
   }
 
-  if (currentPage <= 3) {
-    return [1, 2, 3, 4, 5, '...']
+  if (startPage >= 2) {
+    if (totalPage > 6) pagesArray.unshift('...')
+    pagesArray.unshift(1)
+  }
+  if (endPage <= totalPage - 1) {
+    if (totalPage > 6) pagesArray.push('...')
+    pagesArray.push(totalPage)
   }
 
-  if (currentPage >= totalPage - 2) {
-    return ['...', totalPage - 4, totalPage - 3, totalPage - 2, totalPage - 1, totalPage]
-  }
-
-  return [
-    '...',
-    currentPage - 2,
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    currentPage + 2,
-    '...',
-  ]
+  return pagesArray
 }
 
 export default function Pagination({ currentPage, totalCount, perPage }: Props) {
@@ -61,22 +59,15 @@ export default function Pagination({ currentPage, totalCount, perPage }: Props) 
               </span>
             )
           }
-          if (pageNumber === currentPage) {
-            return (
-              <Link
-                key={i}
-                href={{ pathname: router.pathname, query: { ...router.query, page: pageNumber } }}
-                className='w-10 h-10 rounded-full inline-flex items-center justify-center bg-indigo-600 text-sm font-semibold text-white'
-              >
-                {pageNumber}
-              </Link>
-            )
-          }
           return (
             <Link
               key={i}
               href={{ pathname: router.pathname, query: { ...router.query, page: pageNumber } }}
-              className='w-10 h-10 rounded-full inline-flex items-center justify-center ring-1 ring-inset ring-gray-300 text-sm'
+              className={`w-10 h-10 rounded-full inline-flex items-center justify-center text-sm ${
+                pageNumber === currentPage
+                  ? 'bg-indigo-600 font-semibold text-white'
+                  : 'ring-1 ring-inset ring-gray-300'
+              }`}
             >
               {pageNumber}
             </Link>
