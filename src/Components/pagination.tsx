@@ -15,26 +15,25 @@ type Props = {
  * @returns {Array<string | number>} - 表示するページ番号の配列です。
  */
 function getPageNumbers(currentPage: number, totalPage: number): Array<string | number> {
-  // 6ページ以下の場合は全て表示する
-  if (totalPage <= 6) {
-    return Array.from({ length: totalPage }, (_, index) => index + 1)
-  }
-
   const pagesArray: Array<string | number> = []
-  const startPage = Math.max(currentPage - 2, 1)
-  const endPage = Math.min(currentPage + 2, totalPage)
+
+  const startPage =
+    currentPage >= totalPage - 3 && totalPage !== 7
+      ? Math.max(totalPage - 4, 1)
+      : Math.max(currentPage - 2, 1)
+  const endPage = currentPage <= 4 ? Math.min(5, totalPage) : Math.min(currentPage + 2, totalPage)
 
   for (let i = startPage; i <= endPage; i++) {
     pagesArray.push(i)
   }
 
-  if (endPage <= totalPage - 1) {
-    if (endPage <= totalPage - 2) pagesArray.push('...')
-    pagesArray.push(totalPage)
-  }
   if (startPage >= 2) {
     if (startPage >= 3) pagesArray.unshift('...')
     pagesArray.unshift(1)
+  }
+  if (endPage <= totalPage - 1) {
+    if (endPage <= totalPage - 2) pagesArray.push('...')
+    pagesArray.push(totalPage)
   }
 
   return pagesArray
