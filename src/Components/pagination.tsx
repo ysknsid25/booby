@@ -18,21 +18,19 @@ function getPageNumbers(currentPage: number, totalPage: number): Array<string | 
   const pagesArray: Array<string | number> = []
 
   const startPage =
-    currentPage >= totalPage - 3 && totalPage !== 7
-      ? Math.max(totalPage - 4, 1)
-      : Math.max(currentPage - 2, 1)
-  const endPage = currentPage <= 4 ? Math.min(5, totalPage) : Math.min(currentPage + 2, totalPage)
+    currentPage >= totalPage - 1 ? Math.max(totalPage - 4, 1) : Math.max(currentPage - 2, 1)
+  const endPage = currentPage <= 2 ? Math.min(5, totalPage) : Math.min(currentPage + 2, totalPage)
 
   for (let i = startPage; i <= endPage; i++) {
     pagesArray.push(i)
   }
 
   if (startPage >= 2) {
-    if (startPage >= 3) pagesArray.unshift('...')
+    if (totalPage > 6) pagesArray.unshift('...')
     pagesArray.unshift(1)
   }
   if (endPage <= totalPage - 1) {
-    if (endPage <= totalPage - 2) pagesArray.push('...')
+    if (totalPage > 6) pagesArray.push('...')
     pagesArray.push(totalPage)
   }
 

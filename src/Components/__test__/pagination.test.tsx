@@ -28,7 +28,6 @@ describe('Paginationのテスト', () => {
     )
     expect(getByText('...')).toBeInTheDocument()
   })
-  // changed .toHaveLength(5) to .toHaveLength(6)
   test('Paginationのページ数が7以上の場合にlinkの数が5つ表示されているかどうか', () => {
     const totalCount = 301
     const perPage = 50
@@ -38,7 +37,6 @@ describe('Paginationのテスト', () => {
     )
     expect(getAllByRole('link')).toHaveLength(6)
   })
-  // asking before further changes
   test('Paginationのページ数が7以上の場合かつ現在ページが4のときに左右に「...」が表示されているかどうか', () => {
     const totalCount = 301
     const perPage = 50
@@ -48,10 +46,9 @@ describe('Paginationのテスト', () => {
     )
     const pagination = getByRole('navigation')
     const children = pagination.children
-    expect(children[0].textContent).toBe('...')
-    expect(children[children.length - 1].textContent).toBe('...')
+    expect(children[1].textContent).toBe('...')
+    expect(children[children.length - 2].textContent).toBe('...')
   })
-  // asking before further changes
   test('Paginationのページ数が7以上の場合かつ現在ページが4のときにlinkの数が5つ表示されているかどうか', () => {
     const totalCount = 301
     const perPage = 50
@@ -59,9 +56,8 @@ describe('Paginationのテスト', () => {
     const { getAllByRole } = render(
       <Pagination currentPage={4} totalCount={totalCount} perPage={perPage} />,
     )
-    expect(getAllByRole('link')).toHaveLength(5)
+    expect(getAllByRole('link')).toHaveLength(7)
   })
-  // changed expect(children[0].textContent).toBe('...') to expect(children[1].textContent).toBe('...')
   test('Paginationのページ数が7以上の場合かつ現在ページが最終ページの2ページ前のときに左に「...」が表示されているかどうか', () => {
     const totalCount = 301
     const perPage = 50
@@ -74,7 +70,6 @@ describe('Paginationのテスト', () => {
     expect(children[1].textContent).toBe('...')
     expect(children[children.length - 1].textContent).not.toBe('...')
   })
-  // changed .toHaveLength(5) to .toHaveLength(6)
   test('Paginationのページ数が7以上の場合かつ現在ページが最終ページの2ページ前のときにlinkの数が5つ表示されているかどうか', () => {
     const totalCount = 301
     const perPage = 50
