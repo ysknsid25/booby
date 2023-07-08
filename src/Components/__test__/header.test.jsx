@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
+import { expect, test, describe } from 'vitest'
 import Header from '../header'
-import '@testing-library/jest-dom'
 
 describe('Header部分のテスト', () => {
   test('boobyというタイトル文字が表示されているかどうか', () => {

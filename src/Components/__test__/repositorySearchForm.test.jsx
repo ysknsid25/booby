@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import '@testing-library/jest-dom'
+import { expect, test } from 'vitest'
 import RepositorySearchForm from '@/Components/repositorySearchForm'
 
 describe('RepositSearchFormのテスト', () => {

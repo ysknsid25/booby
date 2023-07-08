@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react'
-import '@testing-library/jest-dom'
-import Pagination from '../pagination'
+import { expect, test, vi } from 'vitest';
+import Pagination from '@/Components/pagination'
 
-jest.mock('next/router', () => ({
-  useRouter: jest.fn().mockReturnValue({
+vi.mock('next/router', () => ({
+  useRouter: vi.fn().mockReturnValue({
     pathname: '/',
     query: { language: 'javascript' },
   }),
