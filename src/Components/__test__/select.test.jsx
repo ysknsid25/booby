@@ -1,6 +1,6 @@
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import { expect, test } from 'vitest'
 import Select from '@/Components/select'
-import '@testing-library/jest-dom'
 
 const options = [
   { label: 'A', value: 'a' },
