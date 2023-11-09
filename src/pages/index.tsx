@@ -4,11 +4,12 @@ import RepositorySearchForm, {
   languageOprionts,
   sortOptions,
 } from '../Components/repositorySearchForm'
-import { GitHubRepository, getRepositories, GitHubRepositorySearch } from './api/githubApi'
+import { getRepositories, GitHubRepositorySearch } from './api/githubApi'
 import HeadComp from '@/Components/head'
 import Header from '@/Components/header'
 import Pagination from '@/Components/pagination'
 import RepositoryCard from '@/Components/repositoryCard'
+import type { GitHubRepository } from '@/type/GitHubRepository'
 
 type Props = {
   repositories: GitHubRepository[]
@@ -72,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
       searchCondition.page = page
     }
-    if(context.query.per_page !== '' && typeof context.query.per_page == 'string') {
+    if (context.query.per_page !== '' && typeof context.query.per_page == 'string') {
       perPage = Number(context.query.per_page)
       if (isNaN(perPage)) {
         perPage = 50

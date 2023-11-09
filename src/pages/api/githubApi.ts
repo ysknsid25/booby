@@ -1,21 +1,12 @@
 import { Octokit } from 'octokit'
+import type { GitHubRepository } from '@/type/GitHubRepository'
+import { isGitHubRepositorys } from '@/type/GitHubRepository'
 
 export type GitHubRepositorySearch = {
   language: string
   sort: 'stars' | 'forks' | 'help-wanted-issues' | 'updated'
   page: number
   perPage: number
-}
-
-export type GitHubRepository = {
-  id: number
-  htmlUrl: string
-  repositoryName: string
-  avatorUrl: string
-  description: string
-  stargazersCount: number
-  watchersCount: number
-  forksCount: number
 }
 
 // Octokit
@@ -35,19 +26,21 @@ export const getRepositories = async (
     per_page: searchCondition.perPage,
     page: searchCondition.page,
   })
-  if (response.data.items) {
-    const repositories: GitHubRepository[] = response.data.items.map((item) => {
-      return {
-        id: item.id,
-        htmlUrl: item.html_url,
-        repositoryName: item.name,
-        avatorUrl: item.owner?.avatar_url ?? '',
-        description: item.description ?? '',
-        stargazersCount: item.stargazers_count,
-        watchersCount: item.watchers_count,
-        forksCount: item.forks_count,
-      }
-    })
+  if (response.status === 200) {
+    const repositories: GitHubRepository[] = response.data.items
+      .map((item) => {
+        return {
+          id: item.id,
+          htmlUrl: item.html_url,
+          repositoryName: item.name,
+          avatorUrl: item.owner?.avatar_url ?? '',
+          description: item.description ?? '',
+          stargazersCount: item.stargazers_count,
+          watchersCount: item.watchers_count,
+          forksCount: item.forks_count,
+        }
+      })
+      .filter((item) => isGitHubRepositorys(item))
     return { totalCount: response.data.total_count, repositories }
   }
   return { totalCount: 0, repositories: [] }
