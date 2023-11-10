@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import { GitHubRepository } from '../pages/api/githubApi'
+import type { GitHubRepository } from '@/type/GitHubRepository'
 
-type Props = {
+interface Props {
   repository: GitHubRepository
 }
 

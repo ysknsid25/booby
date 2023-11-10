@@ -28,20 +28,22 @@ export const sortOptions: SortOption[] = [
   { label: 'Forks', value: 'forks' },
 ]
 
-type Props = {
+interface Props {
   language: string
   sort: string
+  onChangeLanguage: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  onChangeSort: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
-export default function RepositorySearchForm({ language, sort }: Props) {
+export default function RepositorySearchForm({ language, sort, onChangeLanguage, onChangeSort }: Props) {
   return (
     <form method='get' action='/'>
       <div className='mt-4 flex flex-row'>
         <div className='mr-4'>
-          <Select name='language' defaultVal={language} options={languageOprionts} />
+          <Select name='language' selectedVal={language} options={languageOprionts} onchange={onChangeLanguage} />
         </div>
         <div className='mr-4'>
-          <Select name='sort' defaultVal={sort} options={sortOptions} />
+          <Select name='sort' selectedVal={sort} options={sortOptions} onchange={onChangeSort} />
         </div>
         <div>
           <button
